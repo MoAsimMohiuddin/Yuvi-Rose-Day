@@ -50,5 +50,5 @@ export const CONFIG = {
   ],
 
   // --- Music ---
-  musicPath: '/wedding-instrumental.mp3', // place file in /public
+  musicPath: '/sadka_mp3.mp3', // place file in /public
 }

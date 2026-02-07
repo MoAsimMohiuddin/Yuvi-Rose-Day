@@ -6,7 +6,6 @@ import FloatingPetals from './components/FloatingPetals'
 import PreludeScreens from './components/PreludeScreens'
 import LetterReveal from './components/LetterReveal'
 import Garlands from './components/Garlands'
-import MusicButton from './components/MusicButton'
 import { CONFIG } from './config'
 
 /**
@@ -26,11 +25,20 @@ export default function App() {
   const [runKey, setRunKey] = useState(0)
   const rafRef = useRef(null)
   const lastTimeRef = useRef(0)
+  const audioRef = useRef(null)
 
   const handleUnlock = useCallback(() => {
     setUnlocked(true)
     setPreludeIndex(0)
     setPreludeDone(false)
+    if (audioRef.current) {
+      const audio = audioRef.current
+      audio.volume = 0.5
+      audio.currentTime = 0
+      audio.play().catch(() => {
+        // Autoplay might be blocked; nothing else to do.
+      })
+    }
   }, [])
 
   const triggerHaptic = useCallback(() => {
@@ -66,6 +74,16 @@ export default function App() {
   }, [triggerHaptic])
 
   useEffect(() => {
+    if (!unlocked || !audioRef.current) return
+    const audio = audioRef.current
+    audio.volume = 0.5
+    audio.currentTime = 0
+    audio.play().catch(() => {
+      // Autoplay might be blocked; user gesture already happened at unlock
+    })
+  }, [unlocked])
+
+  useEffect(() => {
     if (!holding || roseComplete) return
     const step = (time) => {
       if (!holding) return
@@ -99,8 +117,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-maroon-deep">
-      {/* Music button (tap to play) */}
-      {unlocked && <MusicButton />}
+      <audio ref={audioRef} src={CONFIG.musicPath} preload="auto" playsInline />
 
       {/* Entry: question gate — blocks main content until correct answer */}
       <QuestionGate onUnlock={handleUnlock} />
