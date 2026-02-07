@@ -142,7 +142,7 @@ export default function App() {
                 </div>
               )}
               <div
-                className={`relative flex h-[60vh] w-full max-w-md items-center justify-center touch-manipulation ${
+                className={`no-select relative flex h-[60vh] w-full max-w-md items-center justify-center touch-manipulation ${
                   roseComplete ? 'pointer-events-none' : ''
                 }`}
                 onPointerDown={(e) => {

@@ -124,7 +124,7 @@ export default function RoseAnimation({ progress = 0, onBloomComplete }) {
     >
       <svg
         viewBox="0 0 200 280"
-        className="h-[70vmin] w-[50vmin] max-h-[420px] max-w-[260px] flex-shrink-0"
+        className="rose-svg h-[70vmin] w-[50vmin] max-h-[420px] max-w-[260px] flex-shrink-0"
       >
         <g transform="translate(100, 260)">
           {/* Stem */}
