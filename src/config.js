@@ -28,7 +28,6 @@ export const CONFIG = {
   preludeMessages: [
     'Hey…',
     'I made something for you',
-    'Just… don’t rush it ❤️',
     'Tap when you’re ready',
   ],
 
@@ -37,7 +36,7 @@ export const CONFIG = {
   holdSpeed: 0.12, // progress per second (lower = slower bloom)
 
   // --- Main page ---
-  imagePath: '/yuviii.jpg',
+  imagePath: '/yuvi.jpg',
   title: 'Happy Rose Day ❤️',
   subtitle: 'To my favorite person',
 
